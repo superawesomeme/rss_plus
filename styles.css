@@ -1,0 +1,68 @@
+.block_rss_plus .content {
+padding-left:0 !important;
+padding-right:0 !important;
+	
+}
+
+.rsslink{
+background : #444444 !important ;
+padding:4px;
+}
+
+.rsslink a {
+color: #ffffff ;
+}
+
+.rsslink a:hover{
+color: #dddddd ;
+}
+
+.rsslink a:visited {
+color: #ffffff ;
+}
+
+.rsswrap {
+}
+
+.rsswrap li{
+background : #eeeeee !important;
+min-height: 100px;
+width: 100%;
+margin-top:4px !important;
+margin-bottom:4px !important;
+}
+
+.rssdescription{
+padding:4px;
+}
+
+.rssimage {
+width: 100%;
+}
+
+.rssimage img {
+width: 100%;
+}
+
+.rssaddfeedlink {
+	padding-top:8px;
+	
+}
+
+.rssaddfeedlink a{
+	background : #eeeeee url([[pix:block_rss_plus|addeditfeed]]) no-repeat !important;
+	background-position: 4px 4px !important;
+	border: 1px solid #cccccc;
+	padding-top:4px;
+	padding-bottom:4px;
+	padding-right:4px;
+	padding-left:24px;
+
+}
+
+.rssaddfeedlink a:hover {
+		background:#ffffff;
+		text-decoration:none;
+
+	
+}

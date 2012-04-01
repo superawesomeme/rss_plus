@@ -1,0 +1,1 @@
+More visually appealing RSS News Feed block for Moodle. Currently works best with BBC News feeds as it displays the pictures, but will work with any RSS.
