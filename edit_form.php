@@ -37,6 +37,10 @@ class block_rss_plus_edit_form extends block_edit_form {
         // Fields for editing block contents.
         $mform->addElement('header', 'configheader', get_string('blocksettings', 'block'));
 
+        $mform->addElement('text', 'config_title', get_string('uploadlabel'));
+        $mform->setType('config_title', PARAM_NOTAGS);        
+
+
 	    $mform->addElement('text', 'config_shownumentries', get_string('shownumentrieslabel', 'block_rss_plus'), array('size' => 5));
         $mform->setType('config_shownumentries', PARAM_INTEGER);
         $mform->addRule('config_shownumentries', null, 'numeric', null, 'client');
@@ -68,7 +72,6 @@ class block_rss_plus_edit_form extends block_edit_form {
                     get_string('feedsaddedit', 'block_rss_plus') . '</a></div>');
         }
 
-        
 
     }
 }

@@ -39,10 +39,16 @@
         return array('all' => true, 'tag' => false);   // Needs work to make it work on tags MDL-11960
     }
 
-    function specialization() {
-        
+	
+	function specialization() {
+        // After the block has been loaded we customize the block's title display
+        if (!empty($this->config) && !empty($this->config->title)) {
+            // There is a customized block title, display it
+            $this->title = $this->config->title;
+        } else {
+            // No customized block title, use localized remote news feed string
             $this->title = get_string('remotenewsfeed', 'block_rss_plus');
-        
+        }
     }
 
     function get_content() {
