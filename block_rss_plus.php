@@ -199,7 +199,7 @@
 
         if(empty($title)){
             // no title present, use portion of description
-            $title = textlib::substr(strip_tags($description), 0, 20) . '...';
+            $title = core_text::substr(strip_tags($description), 0, 20) . '...';
         }else{
             $title = break_up_long_words($title, 30);
         }
@@ -223,13 +223,14 @@
 
 
                 $description = break_up_long_words($description, 30);
-				$description = textlib::substr(strip_tags($description), 0, 255) . '';
+				$description = core_text::substr(strip_tags($description), 0, 255) . '';
 
                 $formatoptions = new stdClass();
                 $formatoptions->para = false;
 
                 $r.= html_writer::start_tag('div',array('class'=>'rssdescription'));
                     $r.= format_text($description, FORMAT_HTML, $formatoptions, $this->page->course->id);
+		$r .= html_writer::link( clean_param($link, PARAM_URL), '&hellip;', array() );
                 $r.= html_writer::end_tag('div');
 				
                 $r.= html_writer::start_tag('div',array('class'=>'rssimage'));
@@ -243,14 +244,14 @@
      * 
      */
 
-				
+			
 	if ($enclosure = $item->get_enclosure())
 	{
-	foreach ((array) $enclosure->get_thumbnail(1) as $thumbnail)
-		$r.='<img src="'.$thumbnail.'"/>'."\n";
+	foreach ((array) $enclosure->get_thumbnail(0) as $thumbnail)
+		$r .= html_writer::link( clean_param($link, PARAM_URL), '<img src="'.$thumbnail.'"/>', array() );
+		//$r.='<img src="'.$thumbnail.'"/>'."\n";
 	
 	} 
-		
 		
 	
                 $r.= html_writer::end_tag('div');
@@ -270,12 +271,13 @@
     function format_title($title,$max=64) {
 
         // Loading the textlib singleton instance. We are going to need it.
-        $textlib = textlib_get_instance();
+        //$textlib = textlib_get_instance();
 
-        if ($textlib->strlen($title) <= $max) {
+
+        if (core_text::strlen($title) <= $max) {
             return s($title);
         } else {
-            return s($textlib->substr($title,0,$max-3).'...');
+            return s(core_text::substr($title,0,$max-3).'...');
         }
     }
 
@@ -304,7 +306,8 @@
             mtrace('    ' . $rec->url . ' ', '');
             // Fetch the rss feed, using standard simplepie caching
             // so feeds will be renewed only if cache has expired
-            @set_time_limit(60);
+            //@set_time_limit(60);
+	    core_php_time_limit::raise(60);
 
             $feed =  new moodle_simplepie();
             // set timeout for longer than normal to be agressive at
