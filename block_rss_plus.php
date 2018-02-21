@@ -192,9 +192,9 @@
     
 	function get_item_html($item){
 
-        $link        = $item->get_link();
-        $title       = $item->get_title();
-        $description = $item->get_description();
+        $link        = $item->get_link(); // we will unescape this below using \moodle_url
+        $title       = htmlspecialchars_decode($item->get_title());
+        $description = htmlspecialchars_decode($item->get_description());
 
 
         if(empty($title)){
