@@ -25,9 +25,9 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2016082200;        // The current plugin version (Date: YYYYMMDDXX)
+$plugin->version   = 2018022100;        // The current plugin version (Date: YYYYMMDDXX)
 $plugin->requires  = 2010112400;        // Requires this Moodle version
 $plugin->component = 'block_rss_plus';  // Full name of the plugin (used for diagnostics)
 $plugin->cron      = 300;               // Set min time between cron executions to 300 secs (5 mins)
 $plugin->maturity = MATURITY_ALPHA;
-$plugin->release = '2.x (Build: 2016082200)';
+$plugin->release = '2.x (Build: 2018022100)';

@@ -192,9 +192,9 @@
     
 	function get_item_html($item){
 
-        $link        = $item->get_link();
-        $title       = $item->get_title();
-        $description = $item->get_description();
+        $link        = $item->get_link(); // we will unescape this below using \moodle_url
+        $title       = htmlspecialchars_decode($item->get_title());
+        $description = htmlspecialchars_decode($item->get_description());
 
 
         if(empty($title)){
@@ -247,14 +247,15 @@
 			
 	if ($enclosure = $item->get_enclosure())
 	{
-	foreach ((array) $enclosure->get_thumbnail(0) as $thumbnail)
-		$r .= html_writer::link( clean_param($link, PARAM_URL), '<img src="'.$thumbnail.'"/>', array() );
-		//$r.='<img src="'.$thumbnail.'"/>'."\n";
-	
+		foreach ((array) $enclosure->get_thumbnail(0) as $thumbnail) {
+			$r .= html_writer::link( clean_param($link, PARAM_URL), 
+				html_writer::empty_tag('img', array(
+					'src' => clean_param($thumbnail, PARAM_URL)
+				)), array());
+		}
 	} 
 		
-	
-                $r.= html_writer::end_tag('div');
+	$r.= html_writer::end_tag('div');
             
         $r.= html_writer::end_tag('li');
 
