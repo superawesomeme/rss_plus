@@ -247,14 +247,15 @@
 			
 	if ($enclosure = $item->get_enclosure())
 	{
-	foreach ((array) $enclosure->get_thumbnail(0) as $thumbnail)
-		$r .= html_writer::link( clean_param($link, PARAM_URL), '<img src="'.$thumbnail.'"/>', array() );
-		//$r.='<img src="'.$thumbnail.'"/>'."\n";
-	
+		foreach ((array) $enclosure->get_thumbnail(0) as $thumbnail) {
+			$r .= html_writer::link( clean_param($link, PARAM_URL), 
+				html_writer::empty_tag('img', array(
+					'src' => clean_param($thumbnail, PARAM_URL)
+				)), array());
+		}
 	} 
 		
-	
-                $r.= html_writer::end_tag('div');
+	$r.= html_writer::end_tag('div');
             
         $r.= html_writer::end_tag('li');
 
